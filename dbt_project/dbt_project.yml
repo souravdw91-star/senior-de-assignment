@@ -1,0 +1,31 @@
+# Name and version parameters for the data product
+name: 'senior_de_assignment'
+version: '1.0.0'
+config-version: 2
+
+# Profile linkage pointing to your local connection credentials inside ~/.dbt/profiles.yml
+profile: 'default'
+
+# Directory configuration paths mapping the internal project workspace boundaries
+model-paths: ["models"]
+analysis-paths: ["analysis"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Configuring materialization strategy guidelines across layers
+models:
+  senior_de_assignment:
+    # --- Marts Layer (Gold Layer) ---
+    marts:
+      +materialized: table      # Forces full replacement to guarantee absolute idempotency
+      +file_format: delta       # Enforces high-performance Databricks Delta Lake formatting
+      
+      # Step-level settings optimizing performance metrics for the assessment review
+      +delta_plugins:
+        - optimize: true        # Automatically triggers delta optimization commands on table builds

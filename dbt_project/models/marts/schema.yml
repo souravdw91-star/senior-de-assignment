@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: daily_account_summary
+    description: >
+      Gold layer mart providing an idempotent, daily financial profile per account.
+      It aggregates successfully completed transactions and calculates key product operational metrics.
+    
+    # Enforces the absolute business rule: Only ONE row should exist per account per day.
+    # This validates that our aggregation granularity has zero row explosion anomalies.
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - account_id
+            - transaction_date
+
+    columns:
+      - name: account_id
+        description: "The unique application identifier for the consumer account. Format: ACC-NNNN."
+        tests:
+          - not_null
+          
+      - name: transaction_date
+        description: "The calendar date on which the transaction package took place (truncated to UTC)."
+        tests:
+          - not_null
+
+      - name: total_debit_amount
+        description: "Total aggregated dollar expenditure out of the account for completed transactions on this day."
+        tests:
+          - not_null
+          # Custom check: Debits are calculated from positive absolute values, so this total must never be negative.
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: total_credit_amount
+        description: "Total aggregated incoming financial deposits into the account for completed transactions on this day."
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: net_amount
+        description: "The net fiscal movement calculated as: total_credit_amount minus total_debit_amount."
+        tests:
+          - not_null
+
+      - name: transaction_count
+        description: "Total number of completed individual transactions recorded for this account-day bucket."
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: "> 0"
+
+      - name: top_category
+        description: "The merchant classification where this account logged the absolute highest total transaction spend volume on this day."
+        tests:
+          - not_null
+          # Verifies that values strictly match the valid enum listing specified in the transaction schema
+          - accepted_values:
+              values: [
+                'e-commerce', 'travel', 'food_and_beverage', 'groceries', 'electronics', 
+                'retail', 'entertainment', 'health', 'transportation', 'home_and_garden', 
+                'payroll', 'transfer'
+              ]
+
+      - name: updated_at
+        description: "System timestamp record marking exactly when this record matrix was last computed and overwritten."
+        tests:
+          - not_null

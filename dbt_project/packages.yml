@@ -1,0 +1,4 @@
+packages:
+  # The industry standard package for advanced structural and metric schema tests
+  - package: dbt-labs/dbt_utils
+    version: [">=1.1.0", "<2.0.0"]

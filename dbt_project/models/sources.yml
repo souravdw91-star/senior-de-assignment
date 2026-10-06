@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: main_dev
+    description: >
+      Bronze ingestion layer cataloged within the Databricks Lakehouse metastore.
+      These objects expose raw API transactions and structural metadata.
+    database: hive_metastore  # Default catalog for Databricks Community Edition
+    schema: main_dev
+    tables:
+      - name: bronze_transactions
+        description: >
+          Raw transaction ledger containing ingested data. Includes a mix of 
+          valid records and records flagged during processing.
+        columns:
+          - name: transaction_id
+            description: "Application-level unique identifier. Format: TXN-NNNN."
+          - name: status
+            description: "The execution status state of the record (e.g., completed, pending)."
+          - name: transaction_date
+            description: "Strict ISO 8601 UTC timestamp capturing when the payment event fired."
