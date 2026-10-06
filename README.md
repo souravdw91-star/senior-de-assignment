@@ -94,9 +94,9 @@ senior-de-assignment/
 
 ### Configuration & Credentials
 Set environment variables or enter workspace widget values:
-* `ASSESSMENT_API_BASE_URL`: `https://fgbjekjqnbmtkmeewexb.supabase.co/rest/v1`
-* `ASSESSMENT_API_KEY`: `sb_publishable_W2MbiakvFFthMHtlrzSkQw_URTiUI6G`
-* `ASSESSMENT_AUTH_TOKEN`: `sb_publishable_W2MbiakvFFthMHtlrzSkQw_URTiUI6G`
+* `ASSESSMENT_API_BASE_URL`: `https://****.supabase.co/rest/v1`
+* `ASSESSMENT_API_KEY`: `sb_publishable_******************G`
+* `ASSESSMENT_AUTH_TOKEN`: `sb_publishable_******************G`
 
 ### Step-by-Step Pipeline Execution (Databricks Platform)
 
