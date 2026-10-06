@@ -64,3 +64,19 @@ TXN-0345,ACC-1007,2024-11-31T14:22:00Z,67.4,GBP,debit,McDonald's,fast_food,compl
 merchant_category
   Value error, Invalid merchant category: fast_food [type=value_error, input_value='fast_food', input_type=str]
     For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+TXN-0345,ACC-1007,2024-11-31T14:22:00Z,67.4,GBP,debit,McDonald's,fast_food,completed,UK,2026-10-06 22:29:07.969168,"1 validation error for TransactionModel
+merchant_category
+  Value error, Invalid merchant category: fast_food [type=value_error, input_value='fast_food', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+TXN-0345,ACC-1007,2024-11-31T14:22:00Z,67.4,GBP,debit,McDonald's,fast_food,completed,UK,2026-10-06 22:30:08.731068,"1 validation error for TransactionModel
+merchant_category
+  Value error, Invalid merchant category: fast_food [type=value_error, input_value='fast_food', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+TXN-0345,ACC-1007,2024-11-31T14:22:00Z,67.4,GBP,debit,McDonald's,fast_food,completed,UK,2026-10-06 22:54:40.935125,"1 validation error for TransactionModel
+merchant_category
+  Value error, Invalid merchant category: fast_food [type=value_error, input_value='fast_food', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
+TXN-0345,ACC-1007,2024-11-31T14:22:00Z,67.4,GBP,debit,McDonald's,fast_food,completed,UK,2026-10-06 22:55:11.856817,"1 validation error for TransactionModel
+merchant_category
+  Value error, Invalid merchant category: fast_food [type=value_error, input_value='fast_food', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.13/v/value_error"
